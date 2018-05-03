@@ -1,7 +1,7 @@
 package ws.tools.testcase;
 
 import ws.mechanism.binding.WsInt;
-import ws.mechanism.binding.DataBinding;
+import ws.mechanism.binding.WsDataBinding;
 
 public class ClassExtendsBindable {
 
@@ -12,7 +12,7 @@ public class ClassExtendsBindable {
 		inta.set(100);
 		WsInt end = new WsInt();
 		
-		DataBinding bridge = new DataBinding(DataBinding.BINDINGMODE_INTERACT);
+		WsDataBinding bridge = new WsDataBinding(WsDataBinding.BINDINGMODE_INTERACT);
 		System.out.println("==>>绑定过程中的第一次同步操作，结果");
 		bridge.BindData(inta, end);
 		

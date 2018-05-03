@@ -3,7 +3,7 @@ package ws.tools.testcase;
 import ws.mechanism.binding.WsDouble;
 import ws.mechanism.binding.WsInt;
 import ws.mechanism.binding.WsString;
-import ws.mechanism.binding.DataBinding;
+import ws.mechanism.binding.WsDataBinding;
 
 public class BindingTest {
 
@@ -11,7 +11,7 @@ public class BindingTest {
 		WsInt front = new WsInt(0);
 		WsInt end = new WsInt(10);
 		
-		DataBinding bridge = new DataBinding(DataBinding.BINDINGMODE_INTERACT);
+		WsDataBinding bridge = new WsDataBinding(WsDataBinding.BINDINGMODE_INTERACT);
 		
 		bridge.BindData(front, end);
 		System.out.println("end初始为10，绑定伊始的同步操作测试：front："+ front.get() + "\n================================");
@@ -31,7 +31,7 @@ public class BindingTest {
 		WsDouble front2 = new WsDouble();
 		WsDouble end2 = new WsDouble();
 
-		DataBinding bridge2 = new DataBinding();
+		WsDataBinding bridge2 = new WsDataBinding();
 		
 		bridge2.BindData(front2, end2);
 		
@@ -48,7 +48,7 @@ public class BindingTest {
 		
 		WsString front3 = new WsString();
 		WsString end3 = new WsString();
-		DataBinding bridge3 = new DataBinding(DataBinding.BINDINGMODE_INTERACT);
+		WsDataBinding bridge3 = new WsDataBinding(WsDataBinding.BINDINGMODE_INTERACT);
 		
 		bridge3.BindData(front3, end3);
 		

@@ -1,7 +1,7 @@
 package ws.mechanism.binding;
 
-public class WsBoolean extends WsDataCommon{
-	private DataBinding bridge= null;
+public class WsBoolean extends SimpleAutosync{
+	private WsDataBinding bridge= null;
 	private boolean data = false;
 	
 	public WsBoolean() {}
@@ -10,7 +10,7 @@ public class WsBoolean extends WsDataCommon{
 	}
 
 	@Override
-	void _bindingoperateFrom(DataBinding b) {
+	void _bindingoperateFrom(WsDataBinding b) {
 		this.bridge = b;
 	}
 	public void set(boolean b) {

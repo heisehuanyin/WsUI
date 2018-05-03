@@ -1,18 +1,18 @@
 package ws.mechanism.binding;
 
-public class DataBinding {
+public class WsDataBinding {
 	public static final int BINDINGMODE_READONLY=0;
 	public static final int BINDINGMODE_INTERACT=1;
 	private int bindingMode = 0;
-	private WsDataCommon front;
-	private WsDataCommon end;
-	private WsDataCommon source = null;
+	private SimpleAutosync front;
+	private SimpleAutosync end;
+	private SimpleAutosync source = null;
 	
-	public DataBinding() {}
+	public WsDataBinding() {}
 	
-	public DataBinding(int bindingMode) {this.bindingMode = bindingMode;}
+	public WsDataBinding(int bindingMode) {this.bindingMode = bindingMode;}
 	
-	public void BindData(WsDataCommon front, WsDataCommon end) {
+	public void BindData(SimpleAutosync front, SimpleAutosync end) {
 		this.front = front;
 		front._bindingoperateFrom(this);
 		this.end = end;
@@ -20,7 +20,7 @@ public class DataBinding {
 		end.refresh();
 	}
 	
-	final WsDataCommon getSource() {
+	final SimpleAutosync getSource() {
 		return this.source;
 	}
 
@@ -29,7 +29,7 @@ public class DataBinding {
 		
 		if(source == front) {
 			//如果是只读绑定，那么前端数据无法改变后端数据,甚至前端自己的数据都会变回去
-			if(bindingMode == DataBinding.BINDINGMODE_READONLY) {
+			if(bindingMode == WsDataBinding.BINDINGMODE_READONLY) {
 				((WsInt)front).set(((WsInt)end).get());
 			}
 			else {
@@ -46,7 +46,7 @@ public class DataBinding {
 		
 		if(source == front) {
 			//如果是只读绑定，那么前端数据无法改变后端数据,甚至前端自己的数据都会变回去
-			if(bindingMode == DataBinding.BINDINGMODE_READONLY) {
+			if(bindingMode == WsDataBinding.BINDINGMODE_READONLY) {
 				((WsDouble)front).set(((WsDouble)end).get());
 			}
 			else{
@@ -64,7 +64,7 @@ public class DataBinding {
 		
 		if(source == front) {
 			//如果是只读绑定，那么前端数据无法改变后端数据,甚至前端自己的数据都会变回去
-			if(bindingMode == DataBinding.BINDINGMODE_READONLY) {
+			if(bindingMode == WsDataBinding.BINDINGMODE_READONLY) {
 				((WsString)front).set(((WsString)end).get());
 			}
 			else {
@@ -83,7 +83,7 @@ public class DataBinding {
 		
 		if(source == front) {
 			//如果是只读绑定，那么前端数据无法改变后端数据,甚至前端自己的数据都会变回去
-			if(bindingMode == DataBinding.BINDINGMODE_READONLY) {
+			if(bindingMode == WsDataBinding.BINDINGMODE_READONLY) {
 				((WsBoolean)front).set(((WsBoolean)end).get());
 			}
 			else {

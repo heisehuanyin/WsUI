@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import ws.app.ui.component.WsWindow;
 import ws.mechanism.binding.WsBoolean;
 import ws.mechanism.binding.WsInt;
-import ws.mechanism.binding.DataBinding;
+import ws.mechanism.binding.WsDataBinding;
 import ws.mechanism.event.ViewResizedEvent;
 
 public abstract class View {
@@ -122,7 +122,7 @@ public abstract class View {
 		public void set(boolean b) {
 			if(!b) {
 				super.set(b);
-				DataBinding x = new DataBinding(DataBinding.BINDINGMODE_READONLY);
+				WsDataBinding x = new WsDataBinding(WsDataBinding.BINDINGMODE_READONLY);
 				x.BindData(View.this.visibleWidth, View.this.basicWidth);
 			}
 		}
@@ -132,7 +132,7 @@ public abstract class View {
 		public void set(boolean b) {
 			if(!b) {
 				super.set(b);
-				DataBinding x = new DataBinding(DataBinding.BINDINGMODE_READONLY);
+				WsDataBinding x = new WsDataBinding(WsDataBinding.BINDINGMODE_READONLY);
 				x.BindData(View.this.visibleHeight, View.this.basicHeight);
 			}
 		}

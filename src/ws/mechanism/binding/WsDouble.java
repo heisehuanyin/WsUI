@@ -1,8 +1,8 @@
 package ws.mechanism.binding;
 
-public class WsDouble extends WsDataCommon{
+public class WsDouble extends SimpleAutosync{
 	private double data=0;
-	private DataBinding bridge;
+	private WsDataBinding bridge;
 	
 	public WsDouble() {}
 	public WsDouble(double d) {this.data = d;}
@@ -17,7 +17,7 @@ public class WsDouble extends WsDataCommon{
 	
 	public double get() {return this.data;}
 	
-	void _bindingoperateFrom(DataBinding b) {
+	void _bindingoperateFrom(WsDataBinding b) {
 		this.bridge = b;
 	}
 	@Override

@@ -1,13 +1,13 @@
 package ws.mechanism.binding;
 
-public class WsInt extends WsDataCommon{
+public class WsInt extends SimpleAutosync{
 	private int data = 0;
-	private DataBinding bridge;
+	private WsDataBinding bridge;
 	
 	public WsInt() {}
 	public WsInt(int num) {this.data = num;}
 	
-	void _bindingoperateFrom(DataBinding bindingBase) {
+	void _bindingoperateFrom(WsDataBinding bindingBase) {
 		this.bridge = bindingBase;
 	}
 

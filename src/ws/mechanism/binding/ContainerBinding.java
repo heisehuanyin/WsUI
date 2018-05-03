@@ -4,9 +4,9 @@ public class ContainerBinding {
 	public static final int BINDINGMODE_READONLY=0;
 	public static final int BINDINGMODE_INTERACT=1;
 	private int bindingMode = 0;
-	private WsContainerCommon front;
-	private WsContainerCommon end;
-	private WsContainerCommon source = null;
+	private ObserveredAutoAction front;
+	private ObserveredAutoAction end;
+	private ObserveredAutoAction source = null;
 	
 
 	public ContainerBinding() {}
@@ -36,7 +36,7 @@ public class ContainerBinding {
 		return this.bindingMode;
 	}
 
-	private int listProcessJudgement(WsContainerCommon source) {
+	private int listProcessJudgement(ObserveredAutoAction source) {
 		this.source = source;
 		if(this.source == this.front) {
 			if(this.bindingMode != ContainerBinding.BINDINGMODE_READONLY) {
@@ -47,7 +47,7 @@ public class ContainerBinding {
 			return -1;//从end 流向front
 	}
 	 
-	void actionRecall(WsContainerCommon source, String typeMsg) {
+	void actionRecall(ObserveredAutoAction source, String typeMsg) {
 		if(this.listProcessJudgement(source) > 0)
 			end.actionPerferm(typeMsg);
 		if(this.listProcessJudgement(source) < 0)

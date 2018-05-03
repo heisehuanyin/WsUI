@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 
-public abstract class WsList<E> implements WsContainerCommon,Serializable, Cloneable, Iterable<E>, Collection<E>, List<E>, RandomAccess{
+public abstract class WsList<E> implements ObserveredAutoAction,Serializable, Cloneable, Iterable<E>, Collection<E>, List<E>, RandomAccess{
 	private List<E> trueList = new ArrayList<E>();
 	private ContainerBinding bridge = null;
 	
@@ -196,7 +196,7 @@ public abstract class WsList<E> implements WsContainerCommon,Serializable, Clone
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void _sync_to(WsContainerCommon front) {
+	public void _sync_to(ObserveredAutoAction front) {
 		// TODO Auto-generated method stub
 		((WsList<E>)front).trueList = this.trueList;
 	}

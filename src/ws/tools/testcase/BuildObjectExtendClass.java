@@ -4,10 +4,10 @@ import ws.mechanism.binding.WsBoolean;
 import ws.mechanism.binding.WsDouble;
 import ws.mechanism.binding.WsInt;
 import ws.mechanism.binding.WsString;
-import ws.mechanism.binding.DefaultBuildObject;
-import ws.mechanism.binding.DataBinding;
+import ws.mechanism.binding.WsObject;
+import ws.mechanism.binding.WsDataBinding;
 
-public class BuildObjectExtendClass extends DefaultBuildObject {
+public class BuildObjectExtendClass extends WsObject {
 	private WsString title = new WsString("");
 	private WsInt num = new WsInt(0);
 	private WsDouble d = new WsDouble(0);
@@ -27,7 +27,7 @@ public class BuildObjectExtendClass extends DefaultBuildObject {
 	public static void main(String[]  args) {
 		WsInt end = new WsInt(9);
 		BuildObjectExtendClass frontCollect = new BuildObjectExtendClass();
-		new DataBinding(DataBinding.BINDINGMODE_INTERACT)
+		new WsDataBinding(WsDataBinding.BINDINGMODE_INTERACT)
 			.BindData(frontCollect.getWsInt("num"),end);
 		end.set(100);
 		

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public abstract class WsMap<K, V> implements WsContainerCommon ,Serializable, Cloneable, Map<K,V>{
+public abstract class WsMap<K, V> implements ObserveredAutoAction ,Serializable, Cloneable, Map<K,V>{
 	private Map<K,V> trueMap = new HashMap<K,V>();
 	private ContainerBinding bridge = null;
 
@@ -125,7 +125,7 @@ public abstract class WsMap<K, V> implements WsContainerCommon ,Serializable, Cl
 	}
 
 	@Override
-	public void _sync_to(WsContainerCommon front) {
+	public void _sync_to(ObserveredAutoAction front) {
 		// TODO Auto-generated method stub
 		((WsMap<K,V>)front).trueMap = this.trueMap;
 	}

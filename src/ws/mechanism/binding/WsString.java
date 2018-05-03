@@ -1,13 +1,13 @@
 package ws.mechanism.binding;
 
-public class WsString extends WsDataCommon{
+public class WsString extends SimpleAutosync{
 	private String data;
-	private DataBinding bridge;
+	private WsDataBinding bridge;
 	
 	public WsString() {};
 	public WsString(String str) {this.data = str;}
 	
-	void _bindingoperateFrom(DataBinding bindingBase) {
+	void _bindingoperateFrom(WsDataBinding bindingBase) {
 		this.bridge = bindingBase;
 	}
 
