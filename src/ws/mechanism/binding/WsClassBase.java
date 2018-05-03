@@ -3,7 +3,7 @@ package ws.mechanism.binding;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WsObject extends WsList<WsObject> implements BuildObjectCommon{
+public class WsClassBase extends WsList<WsClassBase> implements BuildObjectCommon{
 	private Map<String,WsInt> attribute = new HashMap<>();
 	private Map<String,WsDouble> attribute2 = new HashMap<>();
 	private Map<String,WsString> attribute3 = new HashMap<>();
