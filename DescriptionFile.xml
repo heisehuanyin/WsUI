@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<Window basicSize="800,600">
+    <import target="ws.ui.View" />
+    <import target="ws.ui.compont.SplitPanel">
+    <SplitPanel id="splitpanel0001" setBasicSize="80,60" autoWidth="true" autoHeight="true" setSpace="0,0,0,0" setBackGround="@image0001">
+    </SplitPanel>
+    <resource>
+        <background id="image0001" />
+    </resource>
+</Window>
