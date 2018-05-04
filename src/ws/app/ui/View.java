@@ -2,6 +2,7 @@ package ws.app.ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Shape;
 import java.util.ArrayList;
 
@@ -15,9 +16,13 @@ public abstract class View {
 	private Shape sp = null;
 	private WsWindow window = null;
 	private Color background = null;
+	private Image drawArea = null;
 	
 	public View(Color background) {
 		this.background = background;
+	}
+	public Image getResultOfPredraw() {
+		return this.drawArea;
 	}
 	
 	public Shape getShape() {
@@ -27,11 +32,13 @@ public abstract class View {
 		this.sp = sp;
 	}
 	public void refreshView() {
-		this.window.__getAwtFrame().repaint();
+		this.window.refreshView();
 	}
 	
 	public void initWindow(WsWindow w) {
 		this.window = w;
+		this.drawArea = this.window.__getOffScreenImg(
+				this.visibleWidth.get(),this.visibleHeight.get());
 	}
 	
 	public Color getBackGround() {
@@ -50,7 +57,7 @@ public abstract class View {
 				super.set(width);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicWidth:" + this.get()));
+					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicWidth:" + this.get()));
 				}
 				View.this.__resizeSubWidth();
 			}
@@ -63,7 +70,7 @@ public abstract class View {
 				super.set(height);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicHeight:" + this.get()));
+					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicHeight:" + this.get()));
 				}
 				View.this.__resizeSubHeight();
 			}
@@ -77,7 +84,7 @@ public abstract class View {
 				super.set(vWidth);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleWidth:" + this.get()));
+					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleWidth:" + this.get()));
 				}
 				View.this.__resizeSubWidth();
 			}
@@ -90,7 +97,7 @@ public abstract class View {
 				super.set(height);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleHeight:"+ this.get()));
+					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleHeight:"+ this.get()));
 				}
 				View.this.__resizeSubHeight();
 			}
@@ -101,7 +108,7 @@ public abstract class View {
 			super.set(i);
 			View.this.FRESH.set(true);
 			if(View.this.window != null) {
-				View.this.window.getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointX:"+ this.get()));
+				View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointX:"+ this.get()));
 			}
 			View.this.__resizeSubWidth();
 		}
@@ -111,7 +118,7 @@ public abstract class View {
 			super.set(i);
 			View.this.FRESH.set(true);
 			if(View.this.window != null) {
-				View.this.window.getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointY:"+ this.get()));
+				View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointY:"+ this.get()));
 			}
 			View.this.__resizeSubHeight();
 		}

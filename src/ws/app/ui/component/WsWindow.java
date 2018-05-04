@@ -74,7 +74,7 @@ public class WsWindow extends SplitPanel {
 		}
 	};
 	
-	public ViewManager getApp() {
+	public ViewManager __getApp() {
 		return this.app;
 	}
 
@@ -193,9 +193,11 @@ public class WsWindow extends SplitPanel {
 	public void __dispose() {
 		this.window.dispose();
 	}
-	
-	public Frame __getAwtFrame() {
-		return this.window;
+	public Image __getOffScreenImg(int width, int height) {
+		return this.window.createImage(width, height);
+	}
+	public void __refreshWindow() {
+		this.window.repaint();
 	}
 
 	public static void main(String[] args) {
