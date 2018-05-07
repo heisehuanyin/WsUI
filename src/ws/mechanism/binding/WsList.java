@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 
-public abstract class WsList<E> implements ObserveredAutoAction,Serializable, Cloneable, Iterable<E>, Collection<E>, List<E>, RandomAccess{
+public abstract class WsList<E> implements ObserveredAutoSync,Serializable, Cloneable, Iterable<E>, Collection<E>, List<E>, RandomAccess{
 	private List<E> trueList = new ArrayList<E>();
-	private ContainerBinding bridge = null;
+	private WsContainerBinding bridge = null;
 	
 	private int processJudge() {
 		if(this.bridge == null)
 			return 1;//只执行自身修改操作
 		if(this.bridge.getFront() != this)
 			return 2;//执行自身修改操作，调用同步操作
-		if(this.bridge.getMode() != ContainerBinding.BINDINGMODE_READONLY)
+		if(this.bridge.getMode() != WsContainerBinding.BINDINGMODE_READONLY)
 			return 2;//不允许写入不执行任何操作
 		return 0;//只读模式，不做任何修改
 	}
@@ -189,14 +189,14 @@ public abstract class WsList<E> implements ObserveredAutoAction,Serializable, Cl
 	}
 
 	@Override
-	public void _bindingFrom(ContainerBinding c) {
+	public void _bindingFrom(WsContainerBinding c) {
 		// TODO Auto-generated method stub
 		this.bridge = c;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void _sync_to(ObserveredAutoAction front) {
+	public void _sync_to(ObserveredAutoSync front) {
 		// TODO Auto-generated method stub
 		((WsList<E>)front).trueList = this.trueList;
 	}

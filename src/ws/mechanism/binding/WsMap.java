@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public abstract class WsMap<K, V> implements ObserveredAutoAction ,Serializable, Cloneable, Map<K,V>{
+public abstract class WsMap<K, V> implements ObserveredAutoSync ,Serializable, Cloneable, Map<K,V>{
 	private Map<K,V> trueMap = new HashMap<K,V>();
-	private ContainerBinding bridge = null;
+	private WsContainerBinding bridge = null;
 
 
 	private int processJudge() {
@@ -17,7 +17,7 @@ public abstract class WsMap<K, V> implements ObserveredAutoAction ,Serializable,
 			return 1;//只执行自身修改操作
 		if(this.bridge.getFront() != this)
 			return 2;//执行自身修改操作，调用同步操作
-		if(this.bridge.getMode() != ContainerBinding.BINDINGMODE_READONLY)
+		if(this.bridge.getMode() != WsContainerBinding.BINDINGMODE_READONLY)
 			return 2;//不允许写入不执行任何操作
 		return 0;//只读模式，不做任何修改
 	}
@@ -119,13 +119,13 @@ public abstract class WsMap<K, V> implements ObserveredAutoAction ,Serializable,
 	}
 
 	@Override
-	public void _bindingFrom(ContainerBinding c) {
+	public void _bindingFrom(WsContainerBinding c) {
 		// TODO Auto-generated method stub
 		this.bridge = c;
 	}
 
 	@Override
-	public void _sync_to(ObserveredAutoAction front) {
+	public void _sync_to(ObserveredAutoSync front) {
 		// TODO Auto-generated method stub
 		((WsMap<K,V>)front).trueMap = this.trueMap;
 	}

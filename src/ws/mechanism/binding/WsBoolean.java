@@ -22,7 +22,7 @@ public class WsBoolean extends SimpleAutosync{
 	}
 	public boolean get() {return this.data;}
 	@Override
-	void refresh() {
+	void _refresh() {
 		this.set(data);
 	}
 	

@@ -1,16 +1,16 @@
 package ws.mechanism.binding;
 
-public class ContainerBinding {
+public class WsContainerBinding {
 	public static final int BINDINGMODE_READONLY=0;
 	public static final int BINDINGMODE_INTERACT=1;
 	private int bindingMode = 0;
-	private ObserveredAutoAction front;
-	private ObserveredAutoAction end;
-	private ObserveredAutoAction source = null;
+	private ObserveredAutoSync front;
+	private ObserveredAutoSync end;
+	private ObserveredAutoSync source = null;
 	
 
-	public ContainerBinding() {}
-	public ContainerBinding(int bindingMode) {this.bindingMode = bindingMode;}
+	public WsContainerBinding() {}
+	public WsContainerBinding(int bindingMode) {this.bindingMode = bindingMode;}
 	
 	public void BindContainer(WsList<?> front, WsList<?> end) {
 		this.front = front;
@@ -36,10 +36,10 @@ public class ContainerBinding {
 		return this.bindingMode;
 	}
 
-	private int listProcessJudgement(ObserveredAutoAction source) {
+	private int listProcessJudgement(ObserveredAutoSync source) {
 		this.source = source;
 		if(this.source == this.front) {
-			if(this.bindingMode != ContainerBinding.BINDINGMODE_READONLY) {
+			if(this.bindingMode != WsContainerBinding.BINDINGMODE_READONLY) {
 				return 1;//从front 流向 end
 			}
 			return 0;//不做
@@ -47,7 +47,7 @@ public class ContainerBinding {
 			return -1;//从end 流向front
 	}
 	 
-	void actionRecall(ObserveredAutoAction source, String typeMsg) {
+	void actionRecall(ObserveredAutoSync source, String typeMsg) {
 		if(this.listProcessJudgement(source) > 0)
 			end.actionPerferm(typeMsg);
 		if(this.listProcessJudgement(source) < 0)

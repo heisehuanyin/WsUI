@@ -17,7 +17,7 @@ public class WsDataBinding {
 		front._bindingoperateFrom(this);
 		this.end = end;
 		end._bindingoperateFrom(this);
-		end.refresh();
+		end._refresh();
 	}
 	
 	final SimpleAutosync getSource() {

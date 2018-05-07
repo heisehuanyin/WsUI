@@ -4,10 +4,10 @@ import ws.mechanism.binding.WsBoolean;
 import ws.mechanism.binding.WsDouble;
 import ws.mechanism.binding.WsInt;
 import ws.mechanism.binding.WsString;
-import ws.mechanism.binding.WsClassBase;
+import ws.mechanism.binding.WsReflectionBase;
 import ws.mechanism.binding.WsDataBinding;
 
-public class BuildObjectExtendClass extends WsClassBase {
+public class BuildObjectExtendClass extends WsReflectionBase {
 	private WsString title = new WsString("");
 	private WsInt num = new WsInt(0);
 	private WsDouble d = new WsDouble(0);

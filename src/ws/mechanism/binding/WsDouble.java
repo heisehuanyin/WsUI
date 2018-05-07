@@ -21,7 +21,7 @@ public class WsDouble extends SimpleAutosync{
 		this.bridge = b;
 	}
 	@Override
-	void refresh() {
+	void _refresh() {
 		this.set(data);
 	}
 }

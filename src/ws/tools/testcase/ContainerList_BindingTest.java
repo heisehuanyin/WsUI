@@ -1,6 +1,6 @@
 package ws.tools.testcase;
 
-import ws.mechanism.binding.ContainerBinding;
+import ws.mechanism.binding.WsContainerBinding;
 import ws.mechanism.binding.WsList;
 
 public class ContainerList_BindingTest {
@@ -19,7 +19,7 @@ public class ContainerList_BindingTest {
 				System.out.println("后端捕获事件："+typeMsg);
 			}
 		};
-		ContainerBinding bridge = new ContainerBinding();
+		WsContainerBinding bridge = new WsContainerBinding();
 		bridge.BindContainer(one, end);
 		end.add("object");
 		end.add("object");

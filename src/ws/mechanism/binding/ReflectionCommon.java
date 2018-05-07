@@ -1,6 +1,6 @@
 package ws.mechanism.binding;
 
-public interface BindObjectCommon {
+public interface ReflectionCommon {
 	void registerAttribute(String name, WsInt attribute);
 	void registerAttribute(String name, WsDouble attribute);
 	void registerAttribute(String name, WsString attribute);

@@ -23,7 +23,7 @@ public class WsString extends SimpleAutosync{
 			this.bridge.push_Sync_Operate(this);
 	}
 	@Override
-	void refresh() {
+	void _refresh() {
 		this.set(data);
 	}
 
