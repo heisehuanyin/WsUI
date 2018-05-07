@@ -137,8 +137,8 @@ public class WsWindow extends SplitPanel {
 		this.leftSpace.set(this.trueWindow.getInsets().left);
 		this.rightSpace.set(this.trueWindow.getInsets().right);
 		this.initWindow(this);
-		this.OpointX.set(this.leftSpace.get());
-		this.OpointY.set(this.topSpace.get());
+		this.originX.set(this.leftSpace.get());
+		this.originY.set(this.topSpace.get());
 		
 		this.trueWindow.addWindowListener(new WindowListener() {
 			@Override

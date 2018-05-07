@@ -28,7 +28,7 @@ public class FlowPanel extends View{
 				View child = this.getViewAtIndex(i);
 				child.visibleWidth.set(child.basicWidth.get());
 				oPointOffset += child.leftSpace.get();
-				child.OpointX.set(this.OpointX.get() + oPointOffset);
+				child.originX.set(this.originX.get() + oPointOffset);
 				oPointOffset += child.visibleWidth.get() + child.rightSpace.get();
 			}
 		}break;
@@ -40,7 +40,7 @@ public class FlowPanel extends View{
 				child.visibleWidth.set(child.basicWidth.get());
 				
 				oPointOffset -= (child.rightSpace.get() + child.visibleWidth.get());
-				child.OpointX.set(this.OpointX.get() + oPointOffset);
+				child.originX.set(this.originX.get() + oPointOffset);
 				oPointOffset -= child.leftSpace.get();
 			}
 		}break;
@@ -51,7 +51,7 @@ public class FlowPanel extends View{
 				if(child.autoWidth.get()) {
 					child.visibleWidth.set(this.visibleWidth.get() - child.leftSpace.get() - child.rightSpace.get());
 				}//设置了autoWidth == false 的视图他的visibleWidth《==basicWidth，不需要调整；
-				child.OpointX.set(this.OpointX.get() + child.leftSpace.get());
+				child.originX.set(this.originX.get() + child.leftSpace.get());
 			}
 		}break;
 		}
@@ -69,7 +69,7 @@ public class FlowPanel extends View{
 				child.visibleHeight.set(child.basicHeight.get());
 				
 				oPointOffset += child.topSpace.get();
-				child.OpointY.set(this.OpointY.get() + oPointOffset);
+				child.originY.set(this.originY.get() + oPointOffset);
 				oPointOffset += child.visibleHeight.get() + child.bottomSpace.get();
 			}
 		}break;
@@ -79,7 +79,7 @@ public class FlowPanel extends View{
 				if(child.autoHeight.get()) {
 					child.visibleHeight.set(this.visibleHeight.get() - child.topSpace.get() - child.bottomSpace.get());
 				}
-				child.OpointY.set(this.OpointY.get() +child.topSpace.get());
+				child.originY.set(this.originY.get() +child.topSpace.get());
 			}
 		}break;
 		}
@@ -89,12 +89,12 @@ public class FlowPanel extends View{
 	public void refreshViewModel() {
 		if(this.getShape() == null) {
 			this.setShape(new Rectangle(
-					this.OpointX.get(),
-					this.OpointY.get(), 
+					this.originX.get(),
+					this.originY.get(), 
 					this.visibleWidth.get(),
 					this.visibleHeight.get()));
 		}
-		((Rectangle)this.getShape()).setLocation(this.OpointX.get(), this.OpointY.get());
+		((Rectangle)this.getShape()).setLocation(this.originX.get(), this.originY.get());
 		((Rectangle)this.getShape()).setSize(this.visibleWidth.get(), this.visibleHeight.get());
 	}
 

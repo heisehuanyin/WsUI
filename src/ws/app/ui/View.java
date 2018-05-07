@@ -93,7 +93,7 @@ public abstract class View {
 			}
 		}
 	};
-	public final WsInt OpointX = new WsInt(0) {
+	public final WsInt originX = new WsInt(0) {
 		public void set(int i) {
 			super.set(i);
 			View.this.FRESH.set(true);
@@ -103,7 +103,7 @@ public abstract class View {
 			View.this.__resizeSubWidth();
 		}
 	};
-	public final WsInt OpointY = new WsInt(0) {
+	public final WsInt originY = new WsInt(0) {
 		public void set(int i) {
 			super.set(i);
 			View.this.FRESH.set(true);
@@ -193,5 +193,6 @@ public abstract class View {
 	//当修改视图高度，计算子控件高度和原点Y坐标
 	public abstract void __resizeSubHeight();
 	//绘制控件
-	public abstract void __refreshViewModel();
+	public abstract void refreshViewModel();
+	public abstract Image __refreshView(Image imgIn);
 }

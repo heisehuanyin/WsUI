@@ -34,7 +34,7 @@ public class AutoCompute {
 	public static void printChildrenSize(String preStr,View parent) {
 		System.out.print(preStr + "组件宽度：" + parent.visibleWidth.get()+"px____");
 		System.out.print("组件高度：" + parent.visibleHeight.get()+"px____");
-		System.out.println("组件坐标：（" + parent.OpointX.get() + "px," + parent.OpointY.get() + "px）");
+		System.out.println("组件坐标：（" + parent.originX.get() + "px," + parent.originY.get() + "px）");
 		
 		for(int i=0;i<parent.getViewCount();++i) {
 			View one = parent.getViewAtIndex(i);

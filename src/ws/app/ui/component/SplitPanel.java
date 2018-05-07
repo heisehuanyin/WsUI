@@ -46,7 +46,7 @@ public class SplitPanel extends View {
 							rone.basicWidth.get() + emptyWidth/adjustableWidthCount*(rone.basicWidth.get());
 
 					opointOffset += rone.leftSpace.get();
-					rone.OpointX.set(this.OpointX.get() + opointOffset);
+					rone.originX.set(this.originX.get() + opointOffset);
 					opointOffset += width + rone.rightSpace.get();
 					
 					if(rone.autoWidth.get()) {
@@ -61,7 +61,7 @@ public class SplitPanel extends View {
 				if(one.autoWidth.get()) {
 					one.visibleWidth.set(viewWidth - one.leftSpace.get() - one.rightSpace.get());
 				}
-				one.OpointX.set(this.OpointX.get() + one.leftSpace.get());
+				one.originX.set(this.originX.get() + one.leftSpace.get());
 			}
 		}break;
 		}
@@ -78,7 +78,7 @@ public class SplitPanel extends View {
 				if(one.autoHeight.get()) {
 					one.visibleHeight.set(viewHeight - one.topSpace.get() - one.bottomSpace.get());
 				}
-				one.OpointY.set(this.OpointY.get() + one.topSpace.get());
+				one.originY.set(this.originY.get() + one.topSpace.get());
 			}
 		}break;
 		default:{//自上至下排布
@@ -106,7 +106,7 @@ public class SplitPanel extends View {
 						rone.basicHeight.get() + emptyHeight/adjustableHeightSum*(rone.basicHeight.get());
 
 					opointOffset += rone.topSpace.get();
-					rone.OpointY.set(this.OpointY.get() + opointOffset);
+					rone.originY.set(this.originY.get() + opointOffset);
 					opointOffset += height + rone.bottomSpace.get();
 					
 					if(rone.autoHeight.get()) {
@@ -122,12 +122,12 @@ public class SplitPanel extends View {
 	public void refreshViewModel() {
 		if(this.getShape() == null) {
 			this.setShape(new Rectangle(
-					this.OpointX.get(),
-					this.OpointY.get(), 
+					this.originX.get(),
+					this.originY.get(), 
 					this.visibleWidth.get(),
 					this.visibleHeight.get()));
 		}
-		((Rectangle)this.getShape()).setLocation(this.OpointX.get(), this.OpointY.get());
+		((Rectangle)this.getShape()).setLocation(this.originX.get(), this.originY.get());
 		((Rectangle)this.getShape()).setSize(this.visibleWidth.get(), this.visibleHeight.get());
 	}
 
