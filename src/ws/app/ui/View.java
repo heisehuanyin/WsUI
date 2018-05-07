@@ -9,12 +9,13 @@ import ws.app.ui.component.WsWindow;
 import ws.mechanism.binding.WsBoolean;
 import ws.mechanism.binding.WsInt;
 import ws.mechanism.binding.WsDataBinding;
+import ws.mechanism.event.EventBase;
 import ws.mechanism.event.ViewResizedEvent;
 
 public abstract class View {
 	private WsWindow window = null;
 	private Color background = null;
-	private Image drawArea = null;
+	public Image drawArea = null;
 	
 	public View(Color background) {
 		this.background = background;
@@ -200,11 +201,13 @@ public abstract class View {
 	public abstract void __resizeSubHeight();
 	//绘制控件
 	public void refreshViewModel() {
-		Image x = this.window.__getOffScreenImg(this.visibleWidth.get(), this.visibleHeight.get());
-		Graphics2D g = (Graphics2D) x.getGraphics();
-		g.clearRect(0, 0, this.visibleWidth.get(), this.visibleHeight.get());
-		this.__paintItSelf(g);
-		this.drawArea = x;
+		new Thread(new ViewRefreshTask(this)).start();
+	}
+	public void pushEvent(EventBase e) {
+		this.window.pushWsEvent(e);
+	}
+	public Image getImage() {
+		return this.window.__getOffScreenImg(this.visibleWidth.get(), this.visibleHeight.get());
 	}
 	//负责具体的工作
 	public abstract void __paintItSelf(Graphics2D g);

@@ -42,8 +42,7 @@ public class ViewManager implements Runnable{
 			
 			//Resized事件处理，重绘图形
 			//Refresh事件处理，重绘图形
-			if(e.getType().equals(EventBase.VIEW_RESIZED) 
-					|| e.getType().equals(EventBase.VIEW_REFRESH)) {
+			if(e.getType().equals(EventBase.VIEW_RESIZED) ) {
 				View target = (View) e.getSource();
 				
 				if(target.FRESH.get()) {
@@ -57,6 +56,18 @@ public class ViewManager implements Runnable{
 					System.out.println("old:" + e.getMsg());
 				}
 				
+			}
+			if(e.getType().equals(EventBase.VIEW_REFRESH)) {
+				View target = (View) e.getSource();
+				if(target.FRESH.get()) {
+					target.FRESH.set(false);
+					System.out.println("〓★Process Once==="
+							+ "========================================\nnew:" + e.getMsg());
+					target.refreshView();
+				}
+				else {
+					System.out.println("old:" + e.getMsg());
+				}
 			}
 		}
 	}
