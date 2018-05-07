@@ -42,7 +42,6 @@ public class FlowPanel extends View{
 				oPointOffset -= (child.rightSpace.get() + child.visibleWidth.get());
 				child.OpointX.set(this.OpointX.get() + oPointOffset);
 				oPointOffset -= child.leftSpace.get();
-				System.out.println("------------------------------------------->right to left:child OX:" + child.OpointX.get());
 			}
 		}break;
 		default:{

@@ -32,7 +32,7 @@ public abstract class View {
 		this.sp = sp;
 	}
 	public void refreshView() {
-		this.window.refreshView();
+		this.window.__refreshWindow();
 	}
 	
 	public void initWindow(WsWindow w) {

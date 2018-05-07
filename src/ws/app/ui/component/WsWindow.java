@@ -33,7 +33,6 @@ class CustomFrame extends Frame{
 		Shape sp = v.getShape();
 		if(sp == null) return;
 		g.setColor(v.getBackGround());
-		System.out.println("))))))))))绘制图形高度尺寸："+ sp.toString());
 		g.fill(sp);
 		
 		for(int i=0;i<v.getViewCount();++i) {
@@ -64,14 +63,14 @@ public class WsWindow extends SplitPanel {
 	public final static int WSWINDOW_DECORATED = 0;
 	public final static int WSWINDOW_UNDECORATED = 1;
 	
-	private CustomFrame window = new CustomFrame(this);
+	private CustomFrame trueWindow = new CustomFrame(this);
 	private ViewManager app = null;
 	
 	//暴漏一个title属性，用于设置标题
 	public final WsString title = new WsString("") {
 		public void set(String title) {
 			super.set(title);
-			WsWindow.this.window.setTitle(title);
+			WsWindow.this.trueWindow.setTitle(title);
 		}
 	};
 	
@@ -85,7 +84,7 @@ public class WsWindow extends SplitPanel {
 		public void set(int i) {
 			if(i>=0) {
 				super.set(i);
-				WsWindow.this.window.setLocation(i, WsWindow.this.locationY.get());
+				WsWindow.this.trueWindow.setLocation(i, WsWindow.this.locationY.get());
 			}
 		}
 	};
@@ -93,7 +92,7 @@ public class WsWindow extends SplitPanel {
 		public void set(int i) {
 			if(i>=0) {
 				super.set(i);
-				WsWindow.this.window.setLocation(WsWindow.this.locationX.get(), i);
+				WsWindow.this.trueWindow.setLocation(WsWindow.this.locationX.get(), i);
 			}
 		}
 	};
@@ -102,25 +101,25 @@ public class WsWindow extends SplitPanel {
 	public final WsInt width = new WsInt(80) {
 		@Override
 		public int get() {
-			return WsWindow.this.window.getWidth();
+			return WsWindow.this.trueWindow.getWidth();
 		}
 		@Override
 		public void set(int i) {
 			super.set(i);
 			WsWindow.this.visibleWidth.set(i -WsWindow.this.leftSpace.get() -WsWindow.this.rightSpace.get());
-			WsWindow.this.window.setSize(i ,WsWindow.this.visibleHeight.get()
+			WsWindow.this.trueWindow.setSize(i ,WsWindow.this.visibleHeight.get()
 					+ WsWindow.this.topSpace.get() + WsWindow.this.bottomSpace.get());
 		}
 	};
 	public final WsInt height= new WsInt(60) {
 		@Override
 		public int get() {
-			return WsWindow.this.window.getHeight();
+			return WsWindow.this.trueWindow.getHeight();
 		}
 		public void set(int i) {
 			super.set(i);
 			WsWindow.this.visibleHeight.set(i -WsWindow.this.topSpace.get() -WsWindow.this.bottomSpace.get());
-			WsWindow.this.window.setSize(WsWindow.this.visibleWidth.get()
+			WsWindow.this.trueWindow.setSize(WsWindow.this.visibleWidth.get()
 					+ WsWindow.this.leftSpace.get() + WsWindow.this.rightSpace.get(), i);
 		}
 	};
@@ -129,18 +128,18 @@ public class WsWindow extends SplitPanel {
 		//调用超类构造器，构建一个初始面板
 		super(SplitPanel.TOP_TO_BOTTOM, Color.darkGray);
 		//打包，为获取信息做准备
-		this.window.pack();
+		this.trueWindow.pack();
 		//可以获取信息了
 		this.app = app;
-		this.topSpace.set(this.window.getInsets().top);
-		this.bottomSpace.set(this.window.getInsets().bottom);
-		this.leftSpace.set(this.window.getInsets().left);
-		this.rightSpace.set(this.window.getInsets().right);
+		this.topSpace.set(this.trueWindow.getInsets().top);
+		this.bottomSpace.set(this.trueWindow.getInsets().bottom);
+		this.leftSpace.set(this.trueWindow.getInsets().left);
+		this.rightSpace.set(this.trueWindow.getInsets().right);
 		this.initWindow(this);
 		this.OpointX.set(this.leftSpace.get());
 		this.OpointY.set(this.topSpace.get());
 		
-		this.window.addWindowListener(new WindowListener() {
+		this.trueWindow.addWindowListener(new WindowListener() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
 				if(WsWindow.this.app!=null)
@@ -155,7 +154,7 @@ public class WsWindow extends SplitPanel {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				if(WsWindow.this.app!=null)
-					WsWindow.this.window.dispose();
+					WsWindow.this.trueWindow.dispose();
 			}
 			//一下方法暂时不涉及
 			@Override
@@ -168,12 +167,12 @@ public class WsWindow extends SplitPanel {
 			public void windowIconified(WindowEvent arg0) {}
 		});
 		
-		this.window.addComponentListener(new ComponentListener() {
+		this.trueWindow.addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
-				WsWindow.this.visibleWidth.set(WsWindow.this.window.getWidth() - 
+				WsWindow.this.visibleWidth.set(WsWindow.this.trueWindow.getWidth() - 
 						WsWindow.this.leftSpace.get() - WsWindow.this.rightSpace.get());
-				WsWindow.this.visibleHeight.set(WsWindow.this.window.getHeight()
+				WsWindow.this.visibleHeight.set(WsWindow.this.trueWindow.getHeight()
 						-WsWindow.this.topSpace.get() -WsWindow.this.bottomSpace.get());
 			}
 
@@ -190,16 +189,16 @@ public class WsWindow extends SplitPanel {
 		
 	}
 	public void __show() {
-		this.window.setVisible(true);
+		this.trueWindow.setVisible(true);
 	}
 	public void __dispose() {
-		this.window.dispose();
+		this.trueWindow.dispose();
 	}
 	public Image __getOffScreenImg(int width, int height) {
-		return this.window.createImage(width, height);
+		return this.trueWindow.createImage(width, height);
 	}
 	public void __refreshWindow() {
-		this.window.repaint();
+		this.trueWindow.repaint();
 	}
 
 	public static void main(String[] args) {
