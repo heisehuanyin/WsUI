@@ -1,6 +1,7 @@
 package ws.app.ui;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
 
@@ -32,7 +33,12 @@ public abstract class View {
 				this.visibleWidth.get(),this.visibleHeight.get());
 	}
 	
-	
+
+	public void resetSetting(Color black) {
+		// TODO Auto-generated method stub
+		this.background = black;
+	}
+
 	public Color getBackGround() {
 		return this.background;
 	}
@@ -193,6 +199,13 @@ public abstract class View {
 	//当修改视图高度，计算子控件高度和原点Y坐标
 	public abstract void __resizeSubHeight();
 	//绘制控件
-	public abstract void refreshViewModel();
-	public abstract Image __refreshView(Image imgIn);
+	public void refreshViewModel() {
+		Image x = this.window.__getOffScreenImg(this.visibleWidth.get(), this.visibleHeight.get());
+		Graphics2D g = (Graphics2D) x.getGraphics();
+		g.clearRect(0, 0, this.visibleWidth.get(), this.visibleHeight.get());
+		this.__paintItSelf(g);
+		this.drawArea = x;
+	}
+	//负责具体的工作
+	public abstract void __paintItSelf(Graphics2D g);
 }

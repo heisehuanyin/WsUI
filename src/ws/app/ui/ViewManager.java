@@ -73,7 +73,7 @@ public class ViewManager implements Runnable{
 		
 		WsWindow appWindow = new WsWindow(app);
 		appWindow.title.set("测试Application功能");
-		appWindow.resetBackGround(Color.black);
+		appWindow.resetSetting(Color.black);
 		
 		//菜单区域
 		SplitPanel menubar = new SplitPanel(SplitPanel.LEFT_TO_RIGHT,new Color(0xe4,0xdd,0xdc));

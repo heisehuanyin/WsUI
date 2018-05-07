@@ -31,29 +31,27 @@ class CustomFrame extends Frame{
 		this.paintOneByOne(w, (Graphics2D)a);
 	}
 	private void paintOneByOne(View v, Graphics2D g) {
-		Shape sp = v.getShape();
-		if(sp == null) return;
-		g.setColor(v.getBackGround());
-		g.fill(sp);
+		Image x = v.getPredrawArea();
+		if(x != null) {
+			g.drawImage(x, v.originX.get(), v.originY.get(), null);
+		}
 		
 		for(int i=0;i<v.getViewCount();++i) {
-			View x = v.getViewAtIndex(i);
-			paintOneByOne(x, g);
+			View x2 = v.getViewAtIndex(i);
+			paintOneByOne(x2, g);
 		}
 	}
 	
 	@Override
 	public void update(Graphics a) {
 		
-		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
-		
 		if(this.offScreenImg == null) {
-			this.offScreenImg = this.createImage((int)screensize.getWidth(), (int)screensize.getHeight());
+			this.offScreenImg = this.createImage(this.getWidth(), this.getHeight());
 		}
 		
 		Graphics gImage = this.offScreenImg.getGraphics();
 		
-		gImage.clearRect(0, 0, (int)screensize.getWidth(), (int)screensize.getHeight());
+		gImage.clearRect(0, 0, this.getWidth(), this.getHeight());
 		
 		this.paint(gImage);
 		a.drawImage(offScreenImg, 0, 0, null);
@@ -211,6 +209,5 @@ public class WsWindow extends SplitPanel {
 		win.__show();
 		win.refreshViewModel();
 	}
-
 
 }

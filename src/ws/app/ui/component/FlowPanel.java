@@ -1,6 +1,8 @@
 package ws.app.ui.component;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 
 import ws.app.ui.View;
@@ -86,16 +88,10 @@ public class FlowPanel extends View{
 	}
 
 	@Override
-	public void refreshViewModel() {
-		if(this.getShape() == null) {
-			this.setShape(new Rectangle(
-					this.originX.get(),
-					this.originY.get(), 
-					this.visibleWidth.get(),
-					this.visibleHeight.get()));
-		}
-		((Rectangle)this.getShape()).setLocation(this.originX.get(), this.originY.get());
-		((Rectangle)this.getShape()).setSize(this.visibleWidth.get(), this.visibleHeight.get());
+	public void __paintItSelf(Graphics2D g) {
+		g.setColor(this.getBackGround());
+		//图片的全部区域填充满
+		g.fill(new Rectangle(0,0,this.visibleWidth.get(),this.visibleHeight.get()));
 	}
 
 }
