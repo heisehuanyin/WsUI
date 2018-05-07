@@ -1,9 +1,7 @@
 package ws.app.ui;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Shape;
 import java.util.ArrayList;
 
 import ws.app.ui.component.WsWindow;
@@ -13,7 +11,6 @@ import ws.mechanism.binding.WsDataBinding;
 import ws.mechanism.event.ViewResizedEvent;
 
 public abstract class View {
-	private Shape sp = null;
 	private WsWindow window = null;
 	private Color background = null;
 	private Image drawArea = null;
@@ -21,16 +18,10 @@ public abstract class View {
 	public View(Color background) {
 		this.background = background;
 	}
-	public Image getResultOfPredraw() {
+	public Image getPredrawArea() {
 		return this.drawArea;
 	}
 	
-	public Shape getShape() {
-		return sp;
-	}
-	public void setShape(Shape sp) {
-		this.sp = sp;
-	}
 	public void refreshView() {
 		this.window.__refreshWindow();
 	}
@@ -41,12 +32,11 @@ public abstract class View {
 				this.visibleWidth.get(),this.visibleHeight.get());
 	}
 	
+	
 	public Color getBackGround() {
 		return this.background;
 	}
-	public void resetBackGround(Color c) {
-		this.background = c;
-	}
+
 	//更新标志
 	public final WsBoolean FRESH = new WsBoolean(true);
 	

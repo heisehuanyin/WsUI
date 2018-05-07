@@ -40,20 +40,17 @@ public class ViewManager implements Runnable{
 				e1.printStackTrace();
 			}
 			
-			if(e==null) {
-				System.out.println("event==null");
-				continue;
-			}
-			
 			//Resized事件处理，重绘图形
-			if(e.getType().equals(EventBase.VIEW_RESIZED)) {
+			//Refresh事件处理，重绘图形
+			if(e.getType().equals(EventBase.VIEW_RESIZED) 
+					|| e.getType().equals(EventBase.VIEW_REFRESH)) {
 				View target = (View) e.getSource();
 				
 				if(target.FRESH.get()) {
 					target.FRESH.set(false);
 					System.out.println("〓★Process Once==="
 							+ "========================================\nnew:" + e.getMsg());
-					target.__refreshViewModel();
+					target.refreshViewModel();
 					target.refreshView();
 				}
 				else {

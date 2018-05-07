@@ -18,6 +18,7 @@ import ws.app.ui.View;
 import ws.mechanism.binding.WsInt;
 import ws.mechanism.binding.WsString;
 import ws.mechanism.event.EventBase;
+import ws.mechanism.event.ViewRefreshEvent;
 
 class CustomFrame extends Frame{
 	private Image offScreenImg;
@@ -178,7 +179,8 @@ public class WsWindow extends SplitPanel {
 
 			@Override
 			public void componentMoved(ComponentEvent arg0) {
-				WsWindow.this.__refreshViewModel();
+				WsWindow.this.FRESH.set(true);
+				WsWindow.this.pushWsEvent(new ViewRefreshEvent(WsWindow.this,"Window Moved!"));
 			}
 			//以下方法暂时不处理
 			@Override
@@ -207,7 +209,7 @@ public class WsWindow extends SplitPanel {
 		win.width.set(800);
 		win.height.set(600);
 		win.__show();
-		win.__refreshViewModel();
+		win.refreshViewModel();
 	}
 
 

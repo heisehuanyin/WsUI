@@ -119,7 +119,7 @@ public class SplitPanel extends View {
 	}
 
 	@Override
-	public void __refreshViewModel() {
+	public void refreshViewModel() {
 		if(this.getShape() == null) {
 			this.setShape(new Rectangle(
 					this.OpointX.get(),

@@ -2,7 +2,7 @@ package ws.mechanism.event;
 
 public abstract class EventBase {
 	public final static String VIEW_RESIZED = "ViewResizedEvent";
-	public final static String VOID_NOOPERATE = "VoidNoOperate";
+	public final static String VIEW_REFRESH = "ViewRefresh";
 	
 	private Object source=null;
 	private String eventInstanceType = "";
