@@ -50,7 +50,6 @@ public class ViewManager implements Runnable{
 					System.out.println("〓★Process Once==="
 							+ "========================================\nnew:" + e.getMsg());
 					target.refreshViewModel();
-					target.refreshView();
 				}
 				else {
 					System.out.println("old:" + e.getMsg());
@@ -59,15 +58,7 @@ public class ViewManager implements Runnable{
 			}
 			if(e.getType().equals(EventBase.VIEW_REFRESH)) {
 				View target = (View) e.getSource();
-				if(target.FRESH.get()) {
-					target.FRESH.set(false);
-					System.out.println("〓★Process Once==="
-							+ "========================================\nnew:" + e.getMsg());
-					target.refreshView();
-				}
-				else {
-					System.out.println("old:" + e.getMsg());
-				}
+				target.repaintView();
 			}
 		}
 	}

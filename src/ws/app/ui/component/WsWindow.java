@@ -32,9 +32,8 @@ class CustomFrame extends Frame{
 	}
 	private void paintOneByOne(View v, Graphics2D g) {
 		Image x = v.getPredrawArea();
-		if(x != null) {
-			g.drawImage(x, v.originX.get(), v.originY.get(), null);
-		}
+		g.drawImage(x, v.originX.get(), v.originY.get(), this);
+		
 		
 		for(int i=0;i<v.getViewCount();++i) {
 			View x2 = v.getViewAtIndex(i);
@@ -54,7 +53,7 @@ class CustomFrame extends Frame{
 		gImage.clearRect(0, 0, this.getWidth(), this.getHeight());
 		
 		this.paint(gImage);
-		a.drawImage(offScreenImg, 0, 0, null);
+		a.drawImage(offScreenImg, 0, 0, this);
 	}
 }
 

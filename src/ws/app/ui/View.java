@@ -10,6 +10,7 @@ import ws.mechanism.binding.WsBoolean;
 import ws.mechanism.binding.WsInt;
 import ws.mechanism.binding.WsDataBinding;
 import ws.mechanism.event.EventBase;
+import ws.mechanism.event.ViewRefreshEvent;
 import ws.mechanism.event.ViewResizedEvent;
 
 public abstract class View {
@@ -21,10 +22,12 @@ public abstract class View {
 		this.background = background;
 	}
 	public Image getPredrawArea() {
-		return this.drawArea;
+		synchronized(this){
+			return this.drawArea;
+		}
 	}
 	
-	public void refreshView() {
+	public void repaintView() {
 		this.window.__refreshWindow();
 	}
 	
@@ -201,13 +204,18 @@ public abstract class View {
 	public abstract void __resizeSubHeight();
 	//绘制控件
 	public void refreshViewModel() {
-		new Thread(new ViewRefreshTask(this)).start();
+		synchronized(this){
+			Image offg = this.window.__getOffScreenImg(this.visibleWidth.get(), this.visibleHeight.get());
+			Graphics2D g = (Graphics2D) offg.getGraphics();
+			g.clearRect(0, 0, this.visibleWidth.get(), this.visibleHeight.get());
+			this.__paintItSelf(g);
+			this.drawArea = offg;
+			this.FRESH.set(true);
+			this.pushEvent(new ViewRefreshEvent(this,"View Refreshed"));
+		}
 	}
 	public void pushEvent(EventBase e) {
 		this.window.pushWsEvent(e);
-	}
-	public Image getImage() {
-		return this.window.__getOffScreenImg(this.visibleWidth.get(), this.visibleHeight.get());
 	}
 	//负责具体的工作
 	public abstract void __paintItSelf(Graphics2D g);
