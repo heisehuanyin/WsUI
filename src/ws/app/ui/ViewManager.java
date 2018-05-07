@@ -63,7 +63,7 @@ public class ViewManager implements Runnable{
 			}
 		}
 	}
-	public void addWsEvent(EventBase event) {
+	public void pushWsEvent(EventBase event) {
 		try {
 			this.eventList.put(event);
 		} catch (InterruptedException e) {

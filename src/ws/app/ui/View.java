@@ -57,7 +57,7 @@ public abstract class View {
 				super.set(width);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicWidth:" + this.get()));
+					View.this.window.pushWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicWidth:" + this.get()));
 				}
 				View.this.__resizeSubWidth();
 			}
@@ -70,7 +70,7 @@ public abstract class View {
 				super.set(height);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicHeight:" + this.get()));
+					View.this.window.pushWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置basicHeight:" + this.get()));
 				}
 				View.this.__resizeSubHeight();
 			}
@@ -84,7 +84,7 @@ public abstract class View {
 				super.set(vWidth);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleWidth:" + this.get()));
+					View.this.window.pushWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleWidth:" + this.get()));
 				}
 				View.this.__resizeSubWidth();
 			}
@@ -97,7 +97,7 @@ public abstract class View {
 				super.set(height);
 				View.this.FRESH.set(true);
 				if(View.this.window != null) {
-					View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleHeight:"+ this.get()));
+					View.this.window.pushWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置visibleHeight:"+ this.get()));
 				}
 				View.this.__resizeSubHeight();
 			}
@@ -108,7 +108,7 @@ public abstract class View {
 			super.set(i);
 			View.this.FRESH.set(true);
 			if(View.this.window != null) {
-				View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointX:"+ this.get()));
+				View.this.window.pushWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointX:"+ this.get()));
 			}
 			View.this.__resizeSubWidth();
 		}
@@ -118,7 +118,7 @@ public abstract class View {
 			super.set(i);
 			View.this.FRESH.set(true);
 			if(View.this.window != null) {
-				View.this.window.__getApp().addWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointY:"+ this.get()));
+				View.this.window.pushWsEvent(new ViewResizedEvent(View.this, View.this.toString() + "设置OpointY:"+ this.get()));
 			}
 			View.this.__resizeSubHeight();
 		}

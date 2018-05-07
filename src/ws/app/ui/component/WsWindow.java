@@ -17,6 +17,7 @@ import ws.app.ui.ViewManager;
 import ws.app.ui.View;
 import ws.mechanism.binding.WsInt;
 import ws.mechanism.binding.WsString;
+import ws.mechanism.event.EventBase;
 
 class CustomFrame extends Frame{
 	private Image offScreenImg;
@@ -74,8 +75,9 @@ public class WsWindow extends SplitPanel {
 		}
 	};
 	
-	public ViewManager __getApp() {
-		return this.app;
+	//推送事件
+	public void pushWsEvent(EventBase e) {
+		this.app.pushWsEvent(e);
 	}
 
 	//位置属性
